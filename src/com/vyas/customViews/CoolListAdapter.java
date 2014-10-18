@@ -37,6 +37,7 @@ public class CoolListAdapter extends ArrayAdapter<ListPojo> {
         public TextView content;
     }
 
+    
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         StringViewHolder StringViewHolder = null;
@@ -55,7 +56,7 @@ public class CoolListAdapter extends ArrayAdapter<ListPojo> {
         final ListPojo task = mTaskList.get(position);
 
         StringViewHolder.content.setText(task.getTaskStr());
-        StringViewHolder.delete.setTag(new Integer(position));
+        //StringViewHolder.delete.setTag(new Integer(position));
         
         int taskThemeColor = task.getThemeColor();
     		if(taskThemeColor == ShowEditScreen.RED){
@@ -83,24 +84,17 @@ public class CoolListAdapter extends ArrayAdapter<ListPojo> {
         StringViewHolder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+            	mTaskList.remove(task);
             	datasource.open();
             		datasource.deleteTask(task);
             	datasource.close();
-                deleteTask(task);
+                MainActivity.listAdapter.remove(task);
                 MainActivity.listAdapter.notifyDataSetChanged();
             }
         });
         convertView.setTag(StringViewHolder);
         return convertView;
     }
-    
-    public void deleteTask(ListPojo task) {
-        MainActivity.listAdapter.remove(task);
-        //Toast.makeText(getContext(), "Task Deleted", Toast.LENGTH_SHORT).show();
-        MainActivity.listAdapter.notifyDataSetChanged();
-    }
-
     
 
 }

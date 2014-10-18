@@ -2,6 +2,7 @@ package com.vyas.androidchallenge;
 
 import com.example.androidchallenge.R;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ public class ShowEditScreen extends Activity {
 	private EditText newTask;
 	private View overlay;
 	private ImageView red,orange,green,blue,purple;
+	private Context context;
 	private int selectedColor;
 	
 	public static final String NEW_TASK = "NEW_TASK";
@@ -31,7 +33,8 @@ public class ShowEditScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.show_edit_screen);
-		 
+		
+		context = getApplicationContext();
 		submit = (Button)findViewById(R.id.btn_submit);
 		newTask = (EditText)findViewById(R.id.et_newTask);
 		overlay = (View)findViewById(R.id.overlay_layout);
@@ -79,11 +82,11 @@ public class ShowEditScreen extends Activity {
 			}
 		});
 		orange.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						setSelected((ImageView)v);
-					}
-				});
+			@Override
+			public void onClick(View v) {
+				setSelected((ImageView)v);
+			}
+		});
 		green.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

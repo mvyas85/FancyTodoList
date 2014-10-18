@@ -58,10 +58,12 @@ public class MainActivity extends Activity {
                             @Override
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
+                                	ListPojo taskTodelete = listAdapter.getItem(position);
+
                                 	datasource.open();
-                            			datasource.deleteTask(listAdapter.getItem(position));
-                            		datasource.close();
-                                	listAdapter.remove(listAdapter.getItem(position));
+                                		datasource.deleteTask(taskTodelete);
+                                	datasource.close();
+                                    listAdapter.remove(taskTodelete);
                                 }
                                 listAdapter.notifyDataSetChanged();
                             }
