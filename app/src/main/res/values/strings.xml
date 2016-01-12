@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_activity_show_edit_screen">ShowEditScreen</string>
+    <string name="hello_world">Hello world!</string>
+</resources>
